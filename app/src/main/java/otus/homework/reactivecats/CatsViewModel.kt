@@ -19,9 +19,7 @@ class CatsViewModel(
     private val _catsLiveData = MutableLiveData<Result>()
     val catsLiveData: LiveData<Result> = _catsLiveData
 
-    private val defaultErrorText: String by lazy {
-        context.getString(R.string.default_error_text)
-    }
+    private val defaultErrorText = context.getString(R.string.default_error_text)
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -46,10 +44,7 @@ class CatsViewModel(
                         _catsLiveData.value = Error(defaultErrorText)
                     }
                 },
-                { tr ->
-                    tr.printStackTrace()
-                    _catsLiveData.value = ServerError
-                }
+                { _catsLiveData.value = ServerError }
             )
         compositeDisposable.add(disposable)
     }

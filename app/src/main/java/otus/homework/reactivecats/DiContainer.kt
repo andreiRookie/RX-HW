@@ -6,6 +6,7 @@ import kotlinx.serialization.json.Json
 import okhttp3.MediaType
 import otus.homework.reactivecats.callAdapter.CatsCallAdapterFactory
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 class DiContainer {
 
@@ -14,7 +15,7 @@ class DiContainer {
         Retrofit.Builder()
             .baseUrl("https://catfact.ninja/")
             .addConverterFactory(provideJson().asConverterFactory(type))
-            .addCallAdapterFactory(CatsCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
